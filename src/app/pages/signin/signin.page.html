@@ -1,0 +1,82 @@
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <ion-title class="title" size="large">Welcome Back</ion-title>
+    <p class="subtitle">Sign in to access your account</p>
+  </div>
+  <form [formGroup]="LoginForm" novalidate>
+    <div class="ion-padding">
+      <ion-item>
+        <ion-input
+          placeholder="username"
+          formControlName="email"
+          class="input"
+        />
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-item>
+
+      <div
+        *ngIf="this.LoginForm.controls?.['email'].touched && this.LoginForm.controls?.['email'].invalid"
+        style="padding-top: -26px; padding-bottom: 16px"
+      >
+        <ion-text
+          class="errorInput"
+          color="danger"
+          *ngIf="errorControl.email.errors?.required"
+          class="errorInput"
+          >Email is required.</ion-text
+        >
+        <ion-text
+          class="errorInput"
+          color="danger"
+          *ngIf="errorControl.email.errors?.required"
+          class="errorInput"
+          >Please provide valid email.</ion-text
+        >
+      </div>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="password"
+          formControlName="password"
+          class="input"
+        />
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+      <div
+        style="padding-top: -26px; padding-bottom: 16px"
+        *ngIf="this.LoginForm.controls?.['password'].touched && this.LoginForm.controls?.['password'].invalid"
+      >
+        <ion-text
+          *ngIf="errorControl.password.errors?.required"
+          class="errorInput"
+          color="danger"
+          >password is required.</ion-text
+        >
+        <ion-text
+          class="errorInput"
+          color="danger"
+          *ngIf="errorControl.password.errors?.required"
+          >Password Must contain at least one character</ion-text
+        >
+      </div>
+
+      <div class="forgotpassword">
+        <a [routerLink]="['/resetpassword']" style="color: #ffc33f"
+          >Forgot Password?</a
+        >
+      </div>
+    </div>
+    <div class="signupLink">
+      <p class="p">
+        New memember?
+        <a [routerLink]="['/signup']" style="color: #ffc33f">SignUp now</a>
+      </p>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" style="margin-bottom: 30px">
+      <ion-fab-button type="submit" (click)="login()">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>
